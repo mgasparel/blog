@@ -1,0 +1,18 @@
+@using Microsoft.AspNetCore.Identity
+@using blog.Data
+@inject SignInManager<ApplicationUser> SignInManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="nav">
+        <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+            <button type="submit" class="btn btn-link navbar-btn navbar-link"><span class="glyphicon glyphicon-log-out"></span> Log out</button>
+        </form>
+    </li>
+}
+else
+{
+    <li class="nav">
+        <a asp-page="/Account/Login"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+    </li>
+}
