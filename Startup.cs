@@ -1,4 +1,5 @@
 using blog.Data;
+using blog.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -26,6 +27,8 @@ namespace blog
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddSingleton<IEmailSender, EmailSender>();
 
             services.AddMvc();
         }
