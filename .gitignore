@@ -27,7 +27,7 @@ bld/
 [Oo]bj/
 [Ll]og/
 
-# Visuak Studio Code options
+# Visual Studio Code options
 .vscode/
 
 # Visual Studio 2015 cache/options directory
