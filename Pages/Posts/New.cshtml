@@ -1,0 +1,22 @@
+@page
+@model NewModel
+
+<h2>New Post</h2>
+
+<form method="post">
+    <div asp-validation-summary="All"></div>
+
+    <div>
+        <label asp-for="Title"></label>
+        <input asp-for="Title">
+        <span asp-validation-for="Title"></span>
+    </div>
+
+    <div>
+        <label asp-for="Body"></label>
+        <textarea asp-for="Body"></textarea>
+        <span asp-validation-for="Body"></span>
+    </div>
+
+    <button type="submit" asp-page-handler="publish">Save</button>
+</form>

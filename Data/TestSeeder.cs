@@ -9,10 +9,11 @@ namespace blog
     public static class TestSeeder
     {
         public static void EnsureDbSeeded(ApplicationDbContext db, UserManager<ApplicationUser> userManager, ILogger logger){
-            //This method is used to seed the in-memory database during initial early development.
-            //Fill this out depending on your needs
+            var user = new ApplicationUser();
+            user.UserName = "me@test.com";
+            user.Email = "me@test.com";
 
-            //This will be removed in the future once we move to a persitent data store
+            userManager.CreateAsync(user, "asdASD123!@#");
         }
     }
 }
