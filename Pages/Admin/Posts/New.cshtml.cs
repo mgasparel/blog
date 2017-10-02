@@ -55,7 +55,7 @@ namespace blog
             {
                 Title = title,
                 Body = body,
-                Author = new ApplicationUser{ Id = _userManager.GetUserId(User) }
+                AuthorId = new Guid(_userManager.GetUserId(User))
             };
 
             _dbContext.Posts.Add(post);
