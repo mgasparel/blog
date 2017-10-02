@@ -9,6 +9,8 @@ namespace blog.Models
 
         public string Title { get; set; }
 
+        public string Slug => Title.Slugify(100);
+
         public string Body { get; set; }
 
         public DateTime Created { get; set; }
