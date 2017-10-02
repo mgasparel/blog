@@ -8,15 +8,24 @@
 
     <div>
         <label asp-for="Title"></label>
-        <input asp-for="Title">
+        <input asp-for="Title" placeholder="Title">
         <span asp-validation-for="Title"></span>
     </div>
 
     <div>
-        <label asp-for="Body"></label>
-        <textarea asp-for="Body"></textarea>
-        <span asp-validation-for="Body"></span>
+        <textarea id='new-blog-post'></textarea>
     </div>
 
-    <button type="submit" asp-page-handler="publish">Save</button>
+    <div>
+        <button type="submit" asp-page-handler="publish">Save</button>
+    </div>
 </form>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+
+    <script>
+        var simplemde = new SimpleMDE({ element: document.getElementById('new-blog-post') });
+    </script>
+}
