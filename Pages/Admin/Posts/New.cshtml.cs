@@ -43,7 +43,7 @@ namespace blog
             {
                 await SavePostAsync(Title, Body);
 
-                return Redirect("/Posts");
+                return Redirect("./Index");
             }
 
             return Page();
