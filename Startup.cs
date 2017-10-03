@@ -33,7 +33,11 @@ namespace blog
 
             services
                 .AddMvc()
-                .AddRazorPagesOptions(options => options.Conventions.AuthorizeFolder("/Admin"));
+                .AddRazorPagesOptions(options => 
+                {
+                    options.Conventions.AuthorizeFolder("/Admin");
+                    options.Conventions.AddPageRoute("/Post", "{slug?}");
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
