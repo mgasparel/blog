@@ -11,7 +11,7 @@ namespace blog
             string slug = new Regex("([^A-Za-z0-9-])")
                 .Replace(spaceless, "");
 
-            if(slug.Length > maxLength)
+            if(slug.Length <= maxLength)
             {
                 return slug;
             }
