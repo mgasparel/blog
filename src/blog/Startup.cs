@@ -23,7 +23,7 @@ namespace blog
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseInMemoryDatabase("db"));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -47,7 +47,7 @@ namespace blog
             {
                 app.UseDeveloperExceptionPage();
 
-                TestSeeder.EnsureDbSeeded(db, userManager, loggerFactory.CreateLogger("Seeder"));
+                TestSeeder.EnsureDbSeeded(db, userManager, loggerFactory.CreateLogger("Seeder"), Configuration).Wait();
             }
             else
             {

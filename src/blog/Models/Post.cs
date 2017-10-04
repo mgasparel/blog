@@ -19,7 +19,7 @@ namespace blog.Models
 
         public DateTime Updated { get; set; }
 
-        public Guid AuthorId { get; set; }
+        public string AuthorId { get; set; }
 
         public ApplicationUser Author { get; set; }
 
