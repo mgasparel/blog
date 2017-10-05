@@ -1,3 +1,5 @@
+![VSTS Build Status](https://mgasparel.visualstudio.com/_apis/public/build/definitions/7c0a6283-f968-4275-ad12-3b02433a73bb/6/badge)
+
 # blog
 
 This project is currently under development and is *not* complete in any sense of the word. 
