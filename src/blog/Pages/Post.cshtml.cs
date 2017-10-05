@@ -2,6 +2,7 @@ using blog.Data;
 using blog.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Linq;
 
@@ -15,6 +16,16 @@ namespace blog
 
         public Post Post { get; set; } 
 
+        public string TagNames
+        {
+            get
+            {
+                return Post.PostTags
+                    .Select(x => x.Tag.Name)
+                    .Aggregate((list, tagName) => list + "," + tagName);
+            }
+        }
+
         public PostModel(ApplicationDbContext db, ILogger<PostModel> logger)
         {
             _db = db;
@@ -24,7 +35,10 @@ namespace blog
 
         public IActionResult OnGet([FromRoute] string slug)
         {
-            Post = _db.Posts.FirstOrDefault(x => x.Slug == slug);
+            Post = _db.Posts
+                .Include(x => x.PostTags)
+                .ThenInclude(x => x.Tag)
+                .FirstOrDefault(x => x.Slug == slug);
 
             if(Post == null)
             {

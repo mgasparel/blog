@@ -8,6 +8,8 @@ namespace blog.Data
     {
         public DbSet<Post> Posts { get; set; }
 
+        public DbSet<Tag> Tags { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -20,6 +22,9 @@ namespace blog.Data
             builder.Entity<Post>()
                 .Property(b => b.Id)
                 .ValueGeneratedOnAdd();
+
+            builder.Entity<PostTag>()
+                .HasKey(t => new { t.PostId, t.TagId });
         }
     }
 }

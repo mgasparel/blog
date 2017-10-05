@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using blog.Data;
 using blog.Models;
@@ -23,6 +25,9 @@ namespace blog
         [BindProperty]
         public string Body { get; set; }
 
+        [BindProperty]
+        public string Tags { get; set; }
+
         public NewModel(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager, ILogger<NewModel> logger)
         {
             _dbContext = dbContext;
@@ -41,7 +46,7 @@ namespace blog
         {
             if(ModelState.IsValid)
             {
-                await SavePostAsync(Title, Body);
+                await SavePostAsync(Title, Body, Tags);
 
                 return Redirect("./Index");
             }
@@ -49,8 +54,10 @@ namespace blog
             return Page();
         }
 
-        private async Task SavePostAsync(string title, string body)
+        private async Task SavePostAsync(string title, string body, string tags)
         {
+            IEnumerable<Tag> tagList = GetTagList(tags);
+
             var post = new Post()
             {
                 Title = title,
@@ -58,9 +65,29 @@ namespace blog
                 AuthorId = _userManager.GetUserId(User)
             };
 
-            _dbContext.Posts.Add(post);
+            _dbContext.AddRange(
+                tagList.Select(tag => new PostTag { Tag = tag, Post = post }));
 
             await _dbContext.SaveChangesAsync();
+        }
+
+        private IEnumerable<Tag> GetTagList(string tagNames)
+        {
+            IEnumerable<string> sanitizedNames = tagNames
+                .Split(',')
+                .Select(x => x.Trim());
+
+            foreach(string name in sanitizedNames)
+            {
+                var tag = _dbContext.Tags.FirstOrDefault(x => x.Name == name);
+
+                if(tag == null)
+                {
+                    tag = new Tag{ Name = name };
+                }
+
+                yield return tag;
+            }
         }
     }
 }

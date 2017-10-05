@@ -13,6 +13,12 @@
     </div>
 
     <div>
+        <label asp-for="Tags"></label>
+        <input asp-for="Tags" placeholder="Tags">
+        <span asp-validation-for="Tags"></span>
+    </div>
+
+    <div>
         <textarea asp-for="Body" id="new-blog-post"></textarea>
     </div>
 

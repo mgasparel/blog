@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using blog.Data;
 
 namespace blog.Models
@@ -22,6 +23,8 @@ namespace blog.Models
         public string AuthorId { get; set; }
 
         public ApplicationUser Author { get; set; }
+
+        public ICollection<PostTag> PostTags { get; set; } = new List<PostTag>();
 
         public Post()
         {
