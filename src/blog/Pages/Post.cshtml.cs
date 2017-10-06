@@ -20,9 +20,16 @@ namespace blog
         {
             get
             {
-                return Post.PostTags
-                    .Select(x => x.Tag.Name)
-                    .Aggregate((list, tagName) => list + "," + tagName);
+                if(Post.PostTags.Count > 0)
+                {
+                    return Post.PostTags
+                        .Select(x => x.Tag.Name)
+                        .Aggregate((list, tagName) => list + "," + tagName);
+                }
+                else
+                {
+                    return string.Empty;
+                }
             }
         }
 
