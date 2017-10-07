@@ -3,7 +3,33 @@
 
 <h2>Posts</h2>
 
-@foreach(var post in Model.Posts)
+@if(!Model.HasPosts)
 {
-    @post.Title
+    @:There aren't any posts yet! Why don't you write a <a asp-page="New">new post</a>?
+}
+else
+{
+    <form method="post">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Post</th>
+                <th>Created</th>
+                <th>Published</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var post in Model.Posts)
+            {
+                <tr>
+                <td>@post.Title</td>
+                <td>@post.Created.ToString("MM/dd/yyyy")</td>
+                <td>@post.Published.ToString("MM/dd/yyyy")</td>
+                <td><button asp-page-handler="Delete" asp-route-id="@post.Id">Delete</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </form>
 }
