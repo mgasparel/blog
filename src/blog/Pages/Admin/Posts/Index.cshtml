@@ -25,7 +25,16 @@ else
                 <tr>
                 <td>@post.Title</td>
                 <td>@post.Created.ToString("MM/dd/yyyy")</td>
-                <td>@post.Published.ToString("MM/dd/yyyy")</td>
+                <td>
+                    @if(post.Published == null)
+                    {
+                        <i>unpublished</i>
+                    }
+                    else
+                    {
+                        @post.Published.Value.ToString("MM/dd/yyyy");
+                    }
+                </td>
                 <td><button asp-page-handler="Delete" asp-route-id="@post.Id">Delete</button></td>
                 </tr>
             }

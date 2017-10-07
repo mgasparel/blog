@@ -42,7 +42,7 @@ namespace blog
 
         }
 
-        public async Task<IActionResult> OnPostPublishAsync()
+        public async Task<IActionResult> OnPostSaveAsync()
         {
             if(ModelState.IsValid)
             {
@@ -54,7 +54,19 @@ namespace blog
             return Page();
         }
 
-        private async Task SavePostAsync(string title, string body, string tags)
+        public async Task<IActionResult> OnPostPublishAsync()
+        {
+            if(ModelState.IsValid)
+            {
+                await SavePostAsync(Title, Body, Tags, publish: true);
+
+                return Redirect("./Index");
+            }
+
+            return Page();
+        }
+
+        private async Task SavePostAsync(string title, string body, string tags, bool publish = false)
         {
             IEnumerable<Tag> tagList = GetTagList(tags);
 
@@ -64,6 +76,11 @@ namespace blog
                 Body = body,
                 AuthorId = _userManager.GetUserId(User)
             };
+
+            if(publish)
+            {
+                post.Published = DateTime.Now;
+            }
 
             _dbContext.AddRange(
                 tagList.Select(tag => new PostTag { Tag = tag, Post = post }));
