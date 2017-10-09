@@ -1,0 +1,45 @@
+@page "{slug}"
+@model EditModel
+
+<h2>Edit Post</h2>
+
+<form method="post">
+    <div asp-validation-summary="All"></div>
+
+    <div>
+        <label asp-for="Title"></label>
+        <input asp-for="Title" placeholder="Title">
+        <span asp-validation-for="Title"></span>
+    </div>
+
+    <div>
+        <label asp-for="Tags"></label>
+        <input asp-for="Tags" placeholder="Tags">
+        <span asp-validation-for="Tags"></span>
+    </div>
+
+    <div>
+        <textarea asp-for="Body" id="new-blog-post"></textarea>
+    </div>
+
+    <div>
+        @if(Model.IsPublished)
+        {
+            <button type="submit" asp-page-handler="save">Save Changes</button>
+        }
+        else
+        {
+            <button type="submit" asp-page-handler="publish">Publish</button>
+            <button type="submit" asp-page-handler="save">Save Draft</button>
+        }
+    </div>
+</form>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+
+    <script>
+        var simplemde = new SimpleMDE({ element: document.getElementById('new-blog-post') });
+    </script>
+}
