@@ -28,6 +28,9 @@ namespace blog
         [BindProperty]
         public string Tags { get; set; }
 
+        [TempData]
+        public string Message { get; set; }
+
         public NewModel(ApplicationDbContext dbContext, UserManager<ApplicationUser> userManager, ILogger<NewModel> logger)
         {
             _dbContext = dbContext;
@@ -48,6 +51,8 @@ namespace blog
             {
                 await SavePostAsync(Title, Body, Tags);
 
+                Message = "Post saved successfully!";
+
                 return Redirect("./Index");
             }
 
@@ -59,6 +64,8 @@ namespace blog
             if(ModelState.IsValid)
             {
                 await SavePostAsync(Title, Body, Tags, publish: true);
+
+                Message = "Post published successfully!";
 
                 return Redirect("./Index");
             }

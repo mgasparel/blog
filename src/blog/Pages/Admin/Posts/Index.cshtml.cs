@@ -21,6 +21,9 @@ namespace blog
 
         public bool HasPosts => Posts.Any();
 
+        [TempData]
+        public string Message { get; set; }
+
         public IndexModel(ApplicationDbContext db, ILogger<IndexModel> logger)
         {
             _db = db;
@@ -38,6 +41,8 @@ namespace blog
             _db.Posts.Attach(new Post{ Id = id }).State = EntityState.Deleted;
 
             await _db.SaveChangesAsync();
+
+            Message = "Post deleted successfully!";
 
             return RedirectToPage();
         }

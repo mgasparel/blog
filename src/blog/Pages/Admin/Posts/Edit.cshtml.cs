@@ -29,6 +29,9 @@ namespace blog
         [BindProperty]
         public string Tags { get; set; }
 
+        [TempData]
+        public string Message { get; set; }
+
         public bool IsPublished { get; set; }
 
         public EditModel(ApplicationDbContext db, UserManager<ApplicationUser> userManager, ILogger<EditModel> logger)
@@ -79,6 +82,8 @@ namespace blog
             {
                 await SavePostAsync(post, Tags, publish: true);
 
+                Message = "Post published successfully!";
+
                 return RedirectToPage("Index");
             }
 
@@ -100,6 +105,8 @@ namespace blog
             if(ModelState.IsValid)
             {
                 await SavePostAsync(post, Tags, publish: false);
+
+                Message = "Post saved successfully!";
 
                 return RedirectToPage("Index");
             }
