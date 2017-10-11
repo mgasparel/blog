@@ -31,9 +31,11 @@ namespace blog
             _logger = logger;
         }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-            Posts = _db.Posts.ToList();
+            var query = new GetPostsQuery(_db);
+
+            Posts = await query.ExecuteAsync(publishedOnly: false);
         }
 
         public async Task<IActionResult> OnPostDeleteAsync(Guid id)

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace blog
 {
@@ -40,12 +41,11 @@ namespace blog
             _logger = logger;
         }
 
-        public IActionResult OnGet([FromRoute] string slug)
+        public async Task<IActionResult> OnGetAsync([FromRoute] string slug)
         {
-            Post = _db.Posts
-                .Include(x => x.PostTags)
-                .ThenInclude(x => x.Tag)
-                .FirstOrDefault(x => x.Slug == slug);
+            var query = new GetPostQuery(_db);
+
+            Post = await query.ExecuteAsync(slug);
 
             if(Post == null)
             {

@@ -26,13 +26,11 @@ namespace blog.Pages
             _logger = logger;
         }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
-            Posts = _db.Posts
-                .Include(x => x.PostTags)
-                .ThenInclude(x => x.Tag)
-                .Include(p => p.Author)
-                .ToList();
+            var query = new GetPostsQuery(_db);
+
+            Posts = await query.ExecuteAsync();
         }
     }
 }
