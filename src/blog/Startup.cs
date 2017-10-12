@@ -33,7 +33,7 @@ namespace blog
 
             services
                 .AddMvc()
-                .AddRazorPagesOptions(options => 
+                .AddRazorPagesOptions(options =>
                 {
                     options.Conventions.AuthorizeFolder("/Admin");
                     options.Conventions.AddPageRoute("/Post", "{slug?}");

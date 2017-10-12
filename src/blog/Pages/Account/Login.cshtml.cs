@@ -21,7 +21,7 @@ namespace blog.Pages.Account
         private readonly ILogger<LoginModel> _logger;
 
         public LoginModel(
-            SignInManager<ApplicationUser> signInManager, 
+            SignInManager<ApplicationUser> signInManager,
             UserManager<ApplicationUser> userManager,
             ILogger<LoginModel> logger)
         {
@@ -85,7 +85,7 @@ namespace blog.Pages.Account
                 else
                 {
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    
+
                     return Page();
                 }
             }

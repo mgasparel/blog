@@ -29,7 +29,7 @@ namespace blog
             var s = new string(text.Normalize(NormalizationForm.FormD)
                 .Where(c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
                 .ToArray());
-    
+
             return s.Normalize(NormalizationForm.FormC);
         }
 

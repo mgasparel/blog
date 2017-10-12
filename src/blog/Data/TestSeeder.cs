@@ -11,9 +11,9 @@ namespace blog
     public static class TestSeeder
     {
         public static async Task EnsureDbSeeded(
-            ApplicationDbContext db, 
-            UserManager<ApplicationUser> userManager, 
-            ILogger logger, 
+            ApplicationDbContext db,
+            UserManager<ApplicationUser> userManager,
+            ILogger logger,
             IConfiguration configuration)
         {
             if(!db.Users.Any())
@@ -26,7 +26,7 @@ namespace blog
                 {
                     logger.LogWarning("DeafultUser:Email was not found in any defined configuration.");
                 }
-                
+
                 if(password == null)
                 {
                     logger.LogWarning("DeafultUser:Password was not found in any defined configuration.");
@@ -35,7 +35,7 @@ namespace blog
                 if(email == null || password == null)
                 {
                     logger.LogWarning("No default user created.");
-                    
+
                     return;
                 }
 

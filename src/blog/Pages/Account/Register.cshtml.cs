@@ -22,7 +22,7 @@ namespace blog.Pages.Account
 
         public RegisterModel(
             SignInManager<ApplicationUser> signInManager,
-            UserManager<ApplicationUser> userManager, 
+            UserManager<ApplicationUser> userManager,
             IEmailSender emailSender,
             ILogger<RegisterModel> logger)
         {
@@ -84,7 +84,7 @@ namespace blog.Pages.Account
 
                     return LocalRedirect(returnUrl);
                 }
-                
+
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);

@@ -15,7 +15,7 @@ namespace blog
 
         private readonly ILogger<PostModel> _logger;
 
-        public Post Post { get; set; } 
+        public Post Post { get; set; }
 
         public string TagNames
         {
