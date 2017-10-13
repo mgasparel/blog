@@ -19,6 +19,10 @@ namespace blog.Pages
 
         public IEnumerable<Post> Posts { get; set; }
 
+        public int PageCount { get; set; }
+
+        public int PageNum { get; set; }
+
         public IndexModel(ApplicationDbContext db, ILogger<IndexModel> logger)
         {
             _db = db;
@@ -26,11 +30,24 @@ namespace blog.Pages
             _logger = logger;
         }
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync([FromRoute] int pageNum = 1)
         {
+            PageNum = pageNum;
+
+            PageCount = await GetPageCountAsync();
+
             var query = new GetPostsQuery(_db);
 
-            Posts = await query.ExecuteAsync();
+            Posts = await query.ExecuteAsync(page: pageNum, pageSize: 5);
+        }
+
+        private async Task<int> GetPageCountAsync()
+        {
+            var postCountQuery = new GetPostCountQuery(_db);
+
+            var postCount = await postCountQuery.ExecuteAsync(publishedOnly: true);
+
+            return (postCount + 4) / 5;
         }
     }
 }
