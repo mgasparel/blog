@@ -1,5 +1,7 @@
 ﻿@page
 @model IndexModel
+@using blog.Services
+
 @{
     ViewData["Title"] = "Home page";
 }
@@ -21,7 +23,7 @@
         </div>
 
         <div>
-            @post.Body
+            @MarkdownRenderer.RenderMarkdown(post.Body)
         </div>
     </div>
 }
