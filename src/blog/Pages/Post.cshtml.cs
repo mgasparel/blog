@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Linq;
 using System.Threading.Tasks;
+using blog.Services;
+using Microsoft.AspNetCore.Html;
 
 namespace blog
 {
@@ -16,6 +18,8 @@ namespace blog
         private readonly ILogger<PostModel> _logger;
 
         public Post Post { get; set; }
+
+        public HtmlString Body { get; set; }
 
         public string TagNames
         {
@@ -51,6 +55,8 @@ namespace blog
             {
                 return NotFound();
             }
+
+            Body = MarkdownRenderer.RenderMarkdown(Post.Body);
 
             return Page();
         }
