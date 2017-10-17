@@ -37,7 +37,7 @@ namespace blog
                 {
                     options.Conventions.AuthorizeFolder("/Admin");
                     options.Conventions.AddPageRoute("/Post", "{slug?}");
-                    options.Conventions.AddPageRoute("/Index", "page/{pageNum}");
+                    options.Conventions.AddPageRoute("/Index", "{pagingSegment:regex(^page$)?}/{pageNum?}");
                 });
         }
 

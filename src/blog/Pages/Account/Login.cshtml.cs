@@ -73,7 +73,7 @@ namespace blog.Pages.Account
                         return LocalRedirect(returnUrl);
                     }
 
-                    return LocalRedirect(Url.Page("/Index"));
+                    return LocalRedirect(Url.Page("/Index", new { pagingSegment = "", pageNum = "" }));
                 }
 
                 if(result.IsLockedOut)

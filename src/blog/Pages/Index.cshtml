@@ -30,10 +30,10 @@
 
 @if(Model.PageNum > 1)
 {
-    <a asp-page="Index" asp-route-pageNum="@(Model.PageNum - 1)">Newer Posts</a>
+    <a asp-page="Index" asp-route-pageNum="@(Model.PageNum - 1)" asp-route-pagingSegment="page">Newer Posts</a>
 }
 
 @if(Model.PageNum < Model.PageCount)
 {
-    <a asp-page="Index" asp-route-pageNum="@(Model.PageNum + 1)">Older Posts</a>
+    <a asp-page="Index" asp-route-pageNum="@(Model.PageNum + 1)" asp-route-pagingSegment="page">Older Posts</a>
 }
