@@ -16,13 +16,13 @@
             <a asp-page="/Index" asp-route-pageNum="" asp-route-pagingSegment="" class="site-header__title">Mike Gasparelli</a>
             <nav class="nav">
                 <ul class="nav__list">
-                    <li class="nav__item"><a asp-page="/Index" asp-route-pageNum="" asp-route-pagingSegment="" class="nav__link nav__link--current-page">Home</a></li>
-                    <li class="nav__item"><a asp-page="/About" class="nav__link">About</a></li>
-                    <li class="nav__item"><a asp-page="/Contact" class="nav__link">Contact</a></li>
+                    <li class="nav__item"><a asp-page="/Index" asp-route-pageNum="" asp-route-pagingSegment="" class="nav__link" highlight-active css-active-class="nav__link--current-page">Home</a></li>
+                    <li class="nav__item"><a asp-page="/About" class="nav__link" highlight-active css-active-class="nav__link--current-page">About</a></li>
+                    <li class="nav__item"><a asp-page="/Contact" class="nav__link" highlight-active css-active-class="nav__link--current-page">Contact</a></li>
                     @if (SignInManager.IsSignedIn(User))
                     {
-                        <li class="nav__item"><a asp-page="/Admin/Posts/Index" class="nav__link">View Posts</a></li>
-                        <li class="nav__item"><a asp-page="/Admin/Posts/New" class="nav__link">New Post</a></li>
+                        <li class="nav__item"><a asp-page="/Admin/Posts/Index" class="nav__link" highlight-active css-active-class="nav__link--current-page">View Posts</a></li>
+                        <li class="nav__item"><a asp-page="/Admin/Posts/New" class="nav__link" highlight-active css-active-class="nav__link--current-page">New Post</a></li>
                     }
                     @await Html.PartialAsync("_LoginPartial")
                 </ul>
