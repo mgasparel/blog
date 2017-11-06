@@ -1,0 +1,19 @@
+@model blog.Models.Post
+@using blog.Services
+
+<article class="post">
+    <header class="post__header">
+        <h2 class="post__title"><a href="~/@Model.Slug">@Model.Title</a></h2>
+        <div class="post__meta">
+            <time datetime="@Model.Published.Value.ToString("yyyy-MM-dd")">@Model.Published.Value.ToString("MM/dd/yyyy")</time>
+            @foreach(var tag in Model.PostTags.Select(x => x.Tag))
+            {
+                <a href="">@tag.Name</a>
+            }
+        </div>
+    </header>
+
+    <div class="post__body">
+        @MarkdownRenderer.RenderMarkdown(Model.Body)
+    </div>
+</article>

@@ -1,35 +1,103 @@
-body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+body{
+    margin: 0 auto;
+    width: 50%;
+    font-family: Helvetica, Arial, sans-serif;
+    max-width: 720px;
 }
 
-/* Wrapping element */
-/* Set some basic padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+ul{
+    margin: 0;
 }
 
-/* Carousel */
-.carousel-caption p {
-    font-size: 20px;
-    line-height: 1.4;
+a{
+    text-decoration: none;
+    color: #444;
+}
+a:hover{
+    color: #FF3B3F;
+    transition: color 0.25s;
 }
 
-/* Make .svg files in the carousel display properly in older browsers */
-.carousel-inner .item img[src$=".svg"] {
+h1, h2, h3, h4, h5, h6{
+    margin: 0;
+    padding: 0;
+    color: #FF3B3F;
+}
+
+.site-header{
+    padding: 75px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.site-header__content{
+    flex-grow: 1;
+}
+.site-header__title{
+    font-size: 2em;
+    color: #FF3B3F;
+}
+.site-header__title:hover{
+    text-decoration: none;
+    color: #ff9da0;
+}
+
+.nav__list{
+    list-style: none;
+    padding: 0;
+    margin-top: 5px;
+}
+.nav__item{
+    float: left;
+    margin-right: 10px;
+}
+.nav__link--current-page{
+    font-weight: bold;
+}
+.nav__link{
+    color: #444;
+    text-decoration: none;
+    font-size: .9em;
+}
+
+
+.post{
+    margin-bottom: 100px;
+}
+.post__title{
+    color: #444;
+    font-size: 40px;
+    font-family: Georgia, serif;
+    margin-bottom: 10px;
+}
+.post__title:hover{
+    color: #FF3B3F;
+}
+.post__body{
+    text-align: justify;
+    line-height: 2em;
+}
+.post__body p{
+    margin: 2em 0;
+}
+.post__body img{
     width: 100%;
 }
 
-/* QR code generator */
-#qrCode {
-    margin: 15px;
+.paging-nav{
+    display: flex;
+    justify-content: space-between;
+    padding: .5em 0;
+}
+.paging-nav--newer{
+    order: 2;
+}
+.paging-nav--older{
+    order: 1;
 }
 
-/* Hide/rearrange for smaller screens */
-@media screen and (max-width: 767px) {
-    /* Hide captions */
-    .carousel-caption {
-        display: none;
-    }
+.site-footer{
+    font-size: 0.6em;
+    text-align: center;
+    margin: 25px 0;
 }

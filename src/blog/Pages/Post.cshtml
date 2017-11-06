@@ -1,12 +1,4 @@
 @page
 @model PostModel
 
-<h1>@Model.Post.Title</h1>
-
-<pre>
-    @Model.TagNames
-</pre>
-
-<p>
-    @Model.Body
-</p>
+@Html.Partial("_Post", Model.Post)
