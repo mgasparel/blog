@@ -14,7 +14,7 @@ namespace blog.Services
 
         public static HtmlString RenderMarkdown(string bodyText)
         {
-            var html = Markdown.ToHtml(bodyText, pipeline);
+            var html = Markdown.ToHtml(bodyText ?? string.Empty, pipeline);
             return new HtmlString(html);
         }
     }

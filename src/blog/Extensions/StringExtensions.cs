@@ -26,6 +26,11 @@ namespace blog
 
         public static string RemoveDiacritics(this string text)
         {
+            if(text == null)
+            {
+                return null;
+            }
+
             var s = new string(text.Normalize(NormalizationForm.FormD)
                 .Where(c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
                 .ToArray());
