@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using blog.Data;
@@ -19,9 +20,12 @@ namespace blog
 
         private readonly ILogger<NewModel> _logger;
 
+        [StringLength(255)]
+        [Required]
         [BindProperty]
         public string Title { get; set; }
 
+        [Required]
         [BindProperty]
         public string Body { get; set; }
 

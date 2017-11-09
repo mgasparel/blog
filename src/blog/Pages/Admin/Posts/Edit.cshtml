@@ -19,7 +19,8 @@
     </div>
 
     <div>
-        <textarea asp-for="Body" id="new-blog-post"></textarea>
+        <span asp-validation-for="Body"></span>
+        <textarea asp-for="Body"></textarea>
     </div>
 
     <div>
@@ -36,6 +37,10 @@
 </form>
 
 @section Scripts {
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
     <script src="~/lib/prism/prism.js"></script>
     <link rel="stylesheet" href="~/lib/prism/prism.css" />
 
@@ -43,6 +48,7 @@
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
 
     <script>
-        var simplemde = new SimpleMDE({ element: document.getElementById('new-blog-post') });
+        $.validator.setDefaults({ ignore: null });
+        var simplemde = new SimpleMDE({ forceSync: true });
     </script>
 }
