@@ -1,8 +1,14 @@
+html, body{
+    height: 100%;
+}
+
 body{
     margin: 0 auto;
     width: 50%;
     font-family: Helvetica, Arial, sans-serif;
     max-width: 720px;
+    display: flex;
+    flex-direction: column;
 }
 
 ul{
@@ -60,6 +66,9 @@ h1, h2, h3, h4, h5, h6{
     font-size: .9em;
 }
 
+.main{
+    flex-grow: 1;
+}
 
 .post{
     margin-bottom: 100px;
@@ -99,5 +108,6 @@ h1, h2, h3, h4, h5, h6{
 .site-footer{
     font-size: 0.6em;
     text-align: center;
-    margin: 25px 0;
+    margin: 25px auto;
+    align-self: flex-end;
 }
