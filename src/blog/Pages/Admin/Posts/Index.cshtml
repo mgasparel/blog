@@ -1,7 +1,7 @@
 @page
 @model IndexModel
 
-<h2>Posts</h2>
+<h2 class="page-title">Posts</h2>
 
 @if(!string.IsNullOrWhiteSpace(Model.Message))
 {
@@ -18,11 +18,11 @@
 else
 {
     <form method="post">
-    <table class="table">
+    <table class="table posts-table">
         <thead>
             <tr>
-                <th>Post</th>
-                <th>Created</th>
+                <th class="posts-table__title-header">Title</th>
+                <th>Updated</th>
                 <th>Published</th>
                 <th>Action</th>
             </tr>
@@ -31,8 +31,8 @@ else
             @foreach(var post in Model.Posts)
             {
                 <tr>
-                <td><a asp-page="Edit" asp-route-slug="@post.Slug">@post.Title</a></td>
-                <td>@post.Created.ToString("MM/dd/yyyy")</td>
+                <td class="posts-table__title-cell"><a asp-page="Edit" asp-route-slug="@post.Slug">@post.Title</a></td>
+                <td>@post.Updated.ToString("MM/dd/yyyy")</td>
                 <td>
                     @if(post.Published == null)
                     {
@@ -43,7 +43,7 @@ else
                         @post.Published.Value.ToString("MM/dd/yyyy");
                     }
                 </td>
-                <td><button asp-page-handler="Delete" asp-route-id="@post.Id">Delete</button></td>
+                <td><button asp-page-handler="Delete" asp-route-id="@post.Id" class="button button-small">Delete</button></td>
                 </tr>
             }
         </tbody>
