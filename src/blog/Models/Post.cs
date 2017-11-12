@@ -6,6 +6,8 @@ namespace blog.Models
 {
     public class Post
     {
+        private DateTime? _updated;
+
         public Guid Id { get; set; }
 
         public string Title { get; set; }
@@ -18,7 +20,19 @@ namespace blog.Models
 
         public DateTime? Published { get; set; }
 
-        public DateTime? Updated { get; set; }
+        public DateTime Updated {
+            get{
+                if(_updated == null)
+                {
+                    return Created;
+                }
+
+                return _updated.Value;
+            }
+            set{
+                _updated = value;
+            }
+        }
 
         public string AuthorId { get; set; }
 

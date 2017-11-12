@@ -126,6 +126,8 @@ namespace blog
 
             post.Body = Body;
 
+            post.Updated = DateTime.Now;
+
             if(publish)
             {
                 post.Published = DateTime.Now;
