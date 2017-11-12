@@ -13,6 +13,7 @@ body{
 
 ul{
     margin: 0;
+    padding: 0;
 }
 
 a{
@@ -27,8 +28,81 @@ a:hover{
 h1, h2, h3, h4, h5, h6{
     margin: 0;
     padding: 0;
+}
+input{
+    box-sizing: border-box;
+    transition: border-color;
+    background-color: white;
+    border-radius: 3px;
+    border: 1px solid #DDD;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.06);
+    font-size: 1em;
+    margin-bottom: .75em;
+    padding: .5em .5em;
+    width: 100%;
+ }
+::-webkit-input-placeholder{ /* Chrome/Opera/Safari */
+    color: #ccc;
+}
+.input-validation-error::-webkit-input-placeholder{
+    color: rgb(255, 111, 118);
+}
+::-moz-placeholder { /* Firefox 19+ */
+    color: #ccc;
+}
+.input-validation-error::-moz-placeholder { /* Firefox 19+ */
+    color: rgb(255, 111, 118);
+}
+:-ms-input-placeholder { /* IE 10+ */
+    color: #ccc;
+}
+.input-validation-error:-ms-input-placeholder { /* IE 10+ */
+    color: rgb(255, 111, 118);
+}
+:-moz-placeholder { /* Firefox 18- */
+    color: #ccc;
+    opacity: 1;
+}
+.input-validation-error:-moz-placeholder { /* Firefox 18- */
+    color: rgb(255, 111, 118);
+}
+
+
+
+
+
+ .hide {
+    position: absolute !important;
+    top: -9999px !important;
+    left: -9999px !important;
+ }
+
+.button{
+    font-family: inherit;
+    font-size: 100%;
+    padding: .5em 1em;
+    color: #fff;
+    border: 1px solid #999;
+    border: transparent;
+    background-color: #FF3B3F;
+    text-decoration: none;
+    border-radius: 2px;
+}
+.button:hover{
+    cursor: pointer;
+    background-image: linear-gradient(transparent,rgba(0,0,0,.05) 40%,rgba(0,0,0,.1));
+}
+
+.input-validation-error{
+    border: 1px solid rgb(255, 111, 118);
     color: #FF3B3F;
 }
+.validation-summary-errors ul{
+    padding-left: 20px;
+}
+
+
+
 
 .site-header{
     padding: 75px 0;
@@ -110,4 +184,45 @@ h1, h2, h3, h4, h5, h6{
     text-align: center;
     margin: 25px auto;
     align-self: flex-end;
+}
+
+.form-field{
+    position: relative;
+}
+
+.form-field__label{
+    opacity: 0;
+}
+
+.new-post-header{
+    font-size: 3em;
+    margin-bottom: 0.5em;
+}
+textarea#Body.input-validation-error ~ .CodeMirror {
+    border-color: #ff9da0;
+    opacity: 1;
+}
+
+
+
+
+[data-tooltip]:not(.field-validation-valid) {
+    position: relative;
+    display: inline-block;
+    padding: 0.5em;
+    background-color: #FF3B3F;
+    border-color: #ff9da0;
+    border-radius: 3px;
+    margin-bottom: 8px;
+    color: #fff;
+}
+
+[data-tooltip] span::after {
+    content: " ";
+    position: absolute;
+    top: 100%; /* At the bottom of the tooltip */
+    left: 15px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #FF3B3F transparent transparent transparent;
 }
