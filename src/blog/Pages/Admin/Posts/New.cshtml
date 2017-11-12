@@ -28,40 +28,5 @@
 </form>
 
 @section Scripts {
-    <script src="~/lib/jquery/dist/jquery.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
-
-    <script src="~/lib/prism/prism.js"></script>
-    <link rel="stylesheet" href="~/lib/prism/prism.css" />
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
-    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
-
-    <script>
-        //Validate our original textarea, even though it is hidden
-        $.validator.setDefaults({ ignore: null });
-
-        var simplemde = new SimpleMDE({
-            //Keep the original textarea in sync with the editor
-            forceSync: true,
-
-            //Add code snippet highlighting via prism.js
-            previewRender: function(plainText, preview) {
-                setTimeout(function() {
-                    preview.innerHTML = this.parent.markdown(plainText);
-                    Prism.highlightAll();
-                }.bind(this), 1)
-                return "Loading..."
-            },
-        });
-
-        //Fire the validation on the original textarea
-        //when the editor's content changes.
-        //We use keyup to make sure the original textarea
-        //is updated *before* we validate it
-        $(".CodeMirror textarea").keyup(function() {
-            $("#Body").valid();
-        });
-    </script>
+    @Html.Partial("_Scripts")
 }
