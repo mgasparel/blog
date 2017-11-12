@@ -194,7 +194,8 @@ input{
     opacity: 0;
 }
 
-.new-post-header{
+.new-post-header,
+.edit-post-header{
     font-size: 3em;
     margin-bottom: 0.5em;
 }

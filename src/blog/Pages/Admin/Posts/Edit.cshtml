@@ -1,37 +1,35 @@
 @page "{slug}"
 @model EditModel
 
-<h2>Edit Post</h2>
+<h2 class="edit-post-header">Edit Post</h2>
 
 <form method="post">
-    <div asp-validation-summary="All"></div>
-
-    <div>
-        <label asp-for="Title"></label>
-        <input asp-for="Title" placeholder="Title">
-        <span asp-validation-for="Title"></span>
+    <div class="form-field">
+        <label asp-for="Title" class="form-field__label hide"></label>
+        <span asp-validation-for="Title" data-tooltip></span>
+        <input asp-for="Title" class="form-field__input" placeholder="Title">
     </div>
 
-    <div>
-        <label asp-for="Tags"></label>
-        <input asp-for="Tags" placeholder="Tags">
-        <span asp-validation-for="Tags"></span>
+    <div class="form-field">
+        <label asp-for="Tags" class="form-field__label hide"></label>
+        <span asp-validation-for="Tags" data-tooltip></span>
+        <input asp-for="Tags" class="form-field__input" placeholder="Tags">
     </div>
 
-    <div>
-        <span asp-validation-for="Body"></span>
+    <div class="form-field">
+        <span asp-validation-for="Body" data-tooltip></span>
         <textarea asp-for="Body"></textarea>
     </div>
 
     <div>
         @if(Model.IsPublished)
         {
-            <button type="submit" asp-page-handler="save">Save Changes</button>
+            <button type="submit" asp-page-handler="save" class="button">Save Changes</button>
         }
         else
         {
-            <button type="submit" asp-page-handler="publish">Publish</button>
-            <button type="submit" asp-page-handler="save">Save Draft</button>
+            <button type="submit" asp-page-handler="publish" class="button">Publish</button>
+            <button type="submit" asp-page-handler="save" class="button">Save Draft</button>
         }
     </div>
 </form>
