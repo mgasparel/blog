@@ -156,6 +156,7 @@ input{
 .nav__item{
     float: left;
     margin-right: 10px;
+    line-height: 2em;
 }
 .nav__link--current-page{
     font-weight: bold;

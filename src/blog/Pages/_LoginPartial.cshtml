@@ -5,12 +5,12 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <li>
+    <li class="nav__item">
         <a asp-page="Account/Manage" class="nav__link">@UserManager.GetUserName(User)</a>
     </li>
-    <li>
+    <li class="nav__item">
         <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
-            <button type="submit" class="nav__link">Log out</button>
+            <button type="submit" class="button button-small">Log out</button>
         </form>
     </li>
 }
