@@ -30,9 +30,11 @@ namespace blog.TagHelpers
 
             var urlHelper = _urlHelper.GetUrlHelper(ViewContext);
 
+            var queryString = ViewContext.HttpContext.Request.QueryString.Value;
             var url = output.Attributes["href"].Value.ToString();
+            var actionUrl = urlHelper.Action();
 
-            if (urlHelper.Action() == url)
+            if (url == actionUrl + queryString)
             {
                 var linkTag = new TagBuilder("a");
                 linkTag.Attributes.Add("class", this.CssClass);

@@ -21,7 +21,7 @@
                     <li class="nav__item"><a asp-page="/Contact" class="nav__link" highlight-active css-active-class="nav__link--current-page">Contact</a></li>
                     @if (SignInManager.IsSignedIn(User))
                     {
-                        <li class="nav__item"><a asp-page="/Admin/Posts/Index" class="nav__link" highlight-active css-active-class="nav__link--current-page">View Posts</a></li>
+                        <li class="nav__item"><a asp-page="/Admin/Posts/Index" asp-route-PageNum="" class="nav__link" highlight-active css-active-class="nav__link--current-page">View Posts</a></li>
                         <li class="nav__item"><a asp-page="/Admin/Posts/New" class="nav__link" highlight-active css-active-class="nav__link--current-page">New Post</a></li>
                     }
                     @await Html.PartialAsync("_LoginPartial")

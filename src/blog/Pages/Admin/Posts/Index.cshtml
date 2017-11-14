@@ -48,5 +48,32 @@ else
             }
         </tbody>
     </table>
+
+    <ul class="pagination">
+        @if(Model.Paginator.PageCount > 1)
+        {
+            string prevDisabled = "pagination__link--disabled";
+            string nextDisabled = "pagination__link--disabled";
+
+            if(Model.Paginator.PreviousPage != null) { prevDisabled = ""; }
+            if(Model.Paginator.NextPage != null) { nextDisabled = ""; }
+
+            <li class="pagination__item">
+                <a asp-route-pageNum="@Model.Paginator.GetRoutingPageNum(Model.Paginator.PreviousPage)" class="pagination__link @prevDisabled">&laquo;</a>
+            </li>
+
+            @foreach(var pageNum in Model.Paginator.GetPagedList())
+            {
+                <li class="pagination__item">
+                    <a asp-route-pageNum="@Model.Paginator.GetRoutingPageNum(pageNum)" class="pagination__link" highlight-active css-active-class="pagination__link--current-page">@pageNum</a>
+                </li>
+            }
+
+            <li class="pagination__item">
+                <a asp-route-pageNum="@Model.Paginator.NextPage" class="pagination__link @nextDisabled">&raquo;</a>
+            </li>
+        }
+    </ul>
+
     </form>
 }

@@ -256,6 +256,7 @@ textarea#Body.input-validation-error ~ .CodeMirror {
 
 .posts-table{
     table-layout: fixed;
+    margin-bottom: 50px;
 }
 .table .posts-table__title-header{
     width: 50%;
@@ -270,4 +271,26 @@ textarea#Body.input-validation-error ~ .CodeMirror {
 }
 .posts-table a{
     padding: 10px;
+}
+
+.pagination{
+    display: flex;
+    list-style: none;
+}
+.pagination__item{
+
+}
+.pagination__link{
+    line-height: 2rem;
+    padding: 2rem 1rem;
+}
+.pagination__link--current-page{
+    font-weight: bold;
+    pointer-events: none;
+    cursor: default;
+}
+.pagination__link--disabled{
+    pointer-events: none;
+    cursor: default;
+    color: #ccc;
 }

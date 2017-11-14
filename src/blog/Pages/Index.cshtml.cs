@@ -24,17 +24,9 @@ namespace blog.Pages
 
         public int PageSize { get; set; }
 
-        public int PageCount { get; set; }
-
         public int PageNum { get; set; }
 
-        public int? NewerPageNum { get; set; }
-
-        public int? OlderPageNum { get; set; }
-
-        public string NewerPagingSegment { get; set; }
-
-        public string OlderPagingSegment { get; set; }
+        public Paginator Paginator { get; set; }
 
         public IndexModel(ApplicationDbContext db, IConfiguration configuration, ILogger<IndexModel> logger)
         {
@@ -58,34 +50,11 @@ namespace blog.Pages
         {
             PageNum = pageNum;
 
-            PageCount = await GetPageCountAsync();
-
-            SetPagingVariables();
-
             var query = new GetPostsQuery(_db);
 
             Posts = await query.ExecuteAsync(pageNum, PageSize);
-        }
 
-        private void SetPagingVariables()
-        {
-            NewerPagingSegment = "page";
-            OlderPagingSegment = "page";
-
-            if (PageNum == 2)
-            {
-                NewerPagingSegment = "";
-                NewerPageNum = null;
-            }
-            else if (PageNum > 2)
-            {
-                NewerPageNum = PageNum - 1;
-            }
-
-            if (PageNum < PageCount)
-            {
-                OlderPageNum = PageNum + 1;
-            }
+            Paginator = new Paginator(pageNum, await GetPageCountAsync());
         }
 
         private async Task<int> GetPageCountAsync()

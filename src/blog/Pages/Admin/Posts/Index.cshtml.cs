@@ -21,6 +21,12 @@ namespace blog
 
         public bool HasPosts => Posts.Any();
 
+        public int PageNum { get; set; }
+
+        public int PageSize { get; set; }
+
+        public Paginator Paginator { get; set; }
+
         [TempData]
         public string Message { get; set; }
 
@@ -29,13 +35,24 @@ namespace blog
             _db = db;
 
             _logger = logger;
+
+            PageSize = 10;
         }
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync([FromQuery] int pageNum = 1)
         {
+            PageNum = pageNum;
+
             var query = new GetPostsQuery(_db);
 
-            Posts = await query.ExecuteAsync(publishedOnly: false);
+            Posts = await query.ExecuteAsync(PageNum, PageSize, publishedOnly: false);
+
+            Posts = Posts
+                .OrderBy(p => p.Published.HasValue)
+                .ThenByDescending(p => p.Published)
+                .ThenByDescending(p => p.Updated);
+
+            Paginator = new Paginator(pageNum, await GetPageCountAsync());
         }
 
         public async Task<IActionResult> OnPostDeleteAsync(Guid id)
@@ -47,6 +64,15 @@ namespace blog
             Message = "Post deleted successfully!";
 
             return RedirectToPage();
+        }
+
+        private async Task<int> GetPageCountAsync()
+        {
+            var postCountQuery = new GetPostCountQuery(_db);
+
+            int postCount = await postCountQuery.ExecuteAsync(publishedOnly: false);
+
+            return (postCount + PageSize - 1) / PageSize;
         }
     }
 }

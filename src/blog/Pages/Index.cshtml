@@ -13,16 +13,19 @@
 
 <hr />
 
+@Model.Paginator.PreviousPage
+
+
 <nav class="paging-nav">
 
-    @if(Model.PageNum > 1)
+    @if(Model.Paginator.PreviousPage != null)
     {
-        <a asp-page="Index" asp-route-pageNum="@Model.NewerPageNum" asp-route-pagingSegment="@Model.NewerPagingSegment" class="paging-nav paging-nav--newer">Newer Posts</a>
+        <a asp-page="Index" asp-route-pageNum="@Model.Paginator.GetRoutingPageNum(Model.Paginator.PreviousPage)" asp-route-pagingSegment="@Model.Paginator.PreviousPagePagingSegment" class="paging-nav paging-nav--newer">Newer Posts</a>
     }
 
-    @if(Model.PageNum < Model.PageCount)
+    @if(Model.Paginator.NextPage != null)
     {
-        <a asp-page="Index" asp-route-pageNum="@Model.OlderPageNum" asp-route-pagingSegment="@Model.OlderPagingSegment" class="paging-nav paging-nav--older">Older Posts</a>
+        <a asp-page="Index" asp-route-pageNum="@Model.Paginator.NextPage" asp-route-pagingSegment="@Model.Paginator.NextPagePagingSegment" class="paging-nav paging-nav--older">Older Posts</a>
     }
 
 </nav>
