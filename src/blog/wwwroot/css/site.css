@@ -127,6 +127,40 @@ input{
     padding-left: 20px;
 }
 
+.alert{
+    border-width: 1px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 3px;
+    margin: 20px 0;
+
+    animation: fadeAlert .5s ease-in 5s forwards;
+    -moz-animation: fadeAlert .5s ease-in 5s forwards;
+    -webkit-animation: fadeAlert .5s ease-in 5s forwards;
+    -o-animation: fadeAlert .5s ease-in 5s forwards;
+
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+.alert--success{
+    border-color: #3c763d;
+    color: #3c763d;
+    background-color: #dff0d8;
+}
+@keyframes fadeAlert {
+    to {
+        opacity: 0;
+        height: 0;
+        margin: 0;
+    }
+}
+@-webkit-keyframes fadeAlert {
+    to {
+        opacity: 0;
+        height: 0;
+        margin: 0;
+    }
+}
 
 
 
