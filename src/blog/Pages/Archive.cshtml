@@ -1,0 +1,27 @@
+@page
+@model ArchiveModel
+
+<h2 class="page-title">Blog Archives</h2>
+
+@if(!Model.YearsWithPosts.Any())
+{
+    <div>
+        There doesn't seem to be anything here yet... check back later!
+    </div>
+}
+
+@foreach(int year in Model.YearsWithPosts)
+{
+    <div class="archive-posts">
+        <h3>@year</h3>
+
+        <hr />
+
+        <ul class="archive-posts__list">
+        @foreach(var post in Model.Posts[year])
+        {
+            <li class="archive-posts__list-item"><a asp-page="Post" asp-route-slug="@post.Slug" class="archive-post__link">@post.Title</a></li>
+        }
+        </ul>
+    </div>
+}

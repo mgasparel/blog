@@ -15,19 +15,24 @@
 
 @Model.Paginator.PreviousPage
 
-
 <nav class="paging-nav">
-
-    @if(Model.Paginator.PreviousPage != null)
-    {
-        <a asp-page="Index" asp-route-pageNum="@Model.Paginator.GetRoutingPageNum(Model.Paginator.PreviousPage)" asp-route-pagingSegment="@Model.Paginator.PreviousPagePagingSegment" class="paging-nav paging-nav--newer">Newer Posts</a>
-    }
-
-    @if(Model.Paginator.NextPage != null)
-    {
-        <a asp-page="Index" asp-route-pageNum="@Model.Paginator.NextPage" asp-route-pagingSegment="@Model.Paginator.NextPagePagingSegment" class="paging-nav paging-nav--older">Older Posts</a>
-    }
-
+    <ul class="paging-nav__list">
+        <li class="paging-nav__list-item">
+            @if(Model.Paginator.PreviousPage != null)
+            {
+                <a asp-page="Index" asp-route-pageNum="@Model.Paginator.GetRoutingPageNum(Model.Paginator.PreviousPage)" asp-route-pagingSegment="@Model.Paginator.PreviousPagePagingSegment" class="paging-nav__link paging-nav__link--newer">Newer Posts</a>
+            }
+        </li>
+        <li>
+            <a asp-page="Archive" class="paging-nav__link">Archive</a>
+        </li>
+        <li>
+            @if(Model.Paginator.NextPage != null)
+            {
+                <a asp-page="Index" asp-route-pageNum="@Model.Paginator.NextPage" asp-route-pagingSegment="@Model.Paginator.NextPagePagingSegment" class="paging-nav__link paging-nav__link--older">Older Posts</a>
+            }
+        </li>
+    </ul>
 </nav>
 
 <hr />
