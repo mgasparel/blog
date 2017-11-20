@@ -12,7 +12,7 @@ namespace blog.Models
 
         public string Title { get; set; }
 
-        public string Slug => Title.Slugify(100);
+        public string Slug { get; set; }
 
         public string Body { get; set; }
 

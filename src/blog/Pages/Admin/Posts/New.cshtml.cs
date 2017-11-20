@@ -84,6 +84,7 @@ namespace blog
             var post = new Post()
             {
                 Title = title,
+                Slug = title.Slugify(100),
                 Body = body,
                 AuthorId = _userManager.GetUserId(User)
             };
