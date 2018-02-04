@@ -1,4 +1,6 @@
 Vue.component('tag-input', {
+    props: ['initialTags'],
+
     template: `
         <div>
             <div>
@@ -14,7 +16,7 @@ Vue.component('tag-input', {
     data() {
         return {
             input: '',
-            tags: []
+            tags: JSON.parse(this.initialTags)
         }
     },
 
