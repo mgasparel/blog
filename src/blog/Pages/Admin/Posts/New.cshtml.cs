@@ -30,7 +30,7 @@ namespace blog
         public string Body { get; set; }
 
         [BindProperty]
-        public string Tags { get; set; }
+        public string[] Tags { get; set; }
 
         [TempData]
         public string Message { get; set; }
@@ -77,7 +77,7 @@ namespace blog
             return Page();
         }
 
-        private async Task SavePostAsync(string title, string body, string tags, bool publish = false)
+        private async Task SavePostAsync(string title, string body, string[] tags, bool publish = false)
         {
             IEnumerable<Tag> tagList = GetTagList(tags);
 
@@ -100,10 +100,9 @@ namespace blog
             await _dbContext.SaveChangesAsync();
         }
 
-        private IEnumerable<Tag> GetTagList(string tagNames)
+        private IEnumerable<Tag> GetTagList(string[] tags)
         {
-            IEnumerable<string> sanitizedNames = tagNames
-                .Split(',')
+            IEnumerable<string> sanitizedNames = tags
                 .Select(x => x.Trim());
 
             foreach(string name in sanitizedNames)

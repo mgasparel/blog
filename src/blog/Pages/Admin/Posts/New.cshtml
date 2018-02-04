@@ -10,10 +10,10 @@
         <input asp-for="Title" class="form-field__input" placeholder="Title">
     </div>
 
-    <div class="form-field">
+    <div class="form-field vue-tag-input">
         <label asp-for="Tags" class="form-field__label hide"></label>
         <span asp-validation-for="Tags" data-tooltip></span>
-        <input asp-for="Tags" class="form-field__input" placeholder="Tags">
+        <tag-input></tag-input>
     </div>
 
     <div class="form-field">
