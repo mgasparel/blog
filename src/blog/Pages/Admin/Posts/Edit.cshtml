@@ -13,7 +13,7 @@
     <div class="form-field vue-tag-input">
         <label asp-for="Tags" class="form-field__label hide"></label>
         <span asp-validation-for="Tags" data-tooltip></span>
-        <tag-input initial-tags=@Html.Raw(Json.Serialize(Model.Tags))></tag-input>
+        <tag-input initial-tags='@Html.Raw(Json.Serialize(Model.Tags))'></tag-input>
     </div>
 
     <div class="form-field">
