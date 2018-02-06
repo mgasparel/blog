@@ -13,11 +13,9 @@
 
 <hr />
 
-@Model.Paginator.PreviousPage
-
 <nav class="paging-nav">
     <ul class="paging-nav__list">
-        <li class="paging-nav__list-item">
+        <li>
             @if(Model.Paginator.PreviousPage != null)
             {
                 <a asp-page="Index" asp-route-pageNum="@Model.Paginator.GetRoutingPageNum(Model.Paginator.PreviousPage)" asp-route-pagingSegment="@Model.Paginator.PreviousPagePagingSegment" class="paging-nav__link paging-nav__link--newer">Newer Posts</a>
