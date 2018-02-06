@@ -2,14 +2,14 @@ Vue.component('tag-input', {
     props: ['initialTags'],
 
     template: `
-        <div>
+        <div class="tags-input">
             <div>
-                <a v-for="tag in tags" href="" @click.prevent="del(tag)" class="tag__link">{{ tag }}</a>
+                <a v-for="tag in tags" href="" @click.prevent="del(tag)" class="tags-input__link">{{ tag }}</a>
             </div>
 
             <input type="hidden" v-for="(tag, i) in tags" :name="'Tags[' + i + ']'" :value="tag" />
 
-            <input type="text" ref="textbox" placeholder="Tags" class="form-field__input" v-model="input" @keydown.tab.prevent="add" @keydown.enter.prevent="add">
+            <input type="text" ref="textbox" placeholder="Tags" v-model="input" @keydown.tab.prevent="add" @keydown.enter.prevent="add">
         </div>
     `,
 
