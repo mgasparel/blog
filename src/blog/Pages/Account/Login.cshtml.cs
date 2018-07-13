@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -46,8 +47,6 @@ namespace blog.Pages.Account
 
             [Required, DataType(DataType.Password)]
             public string Password { get; set; }
-
-            public bool RememberMe { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -63,7 +62,7 @@ namespace blog.Pages.Account
 
             if(ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
+                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, isPersistent: false, lockoutOnFailure: true);
                 if(result.Succeeded)
                 {
                     _logger.LogInformation("{Email} logged in.", Input.Email);

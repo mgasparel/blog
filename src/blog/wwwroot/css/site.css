@@ -364,3 +364,10 @@ textarea#Body.input-validation-error ~ .CodeMirror {
 .tags__item{
     color: #666;
 }
+
+.login__submit{
+    float: right;
+}
+.login__forgotPassword{
+    font-size: 0.8em;
+}

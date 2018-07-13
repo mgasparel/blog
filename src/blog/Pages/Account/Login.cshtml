@@ -7,48 +7,29 @@
 }
 else
 {
-    <h2>Log In</h2>
+    <h2 class="page-title">Log In</h2>
 
-    <form method="post">
-        <h4>Use a local account to log in.</h4>
+    <div asp-validation-summary="All"></div>
 
-        <hr />
-
-        <div asp-validation-summary="All"></div>
-
-        <div>
-            <label asp-for="Input.Email"></label>
-            <input asp-for="Input.Email"/>
-            <span asp-validation-for="Input.Email"></span>
+    <form method="post" class="login">
+        <div class="form-field">
+            <label asp-for="Input.Email" class="form-field__label hide" data-tooltip></label>
+            <span asp-validation-for="Input.Email" data-tooltip></span>
+            <input asp-for="Input.Email" class="form-field__input" placeholder="Email"/>
         </div>
 
-        <div>
-            <label asp-for="Input.Password"></label>
-            <input asp-for="Input.Password"/>
-            <span asp-validation-for="Input.Password"></span>
+        <div class="form-field">
+            <label asp-for="Input.Password" class="form-field__label hide" data-tooltip></label>
+            <span asp-validation-for="Input.Password" data-tooltip></span>
+            <input asp-for="Input.Password" class="form-field__input" placeholder="Password"/>
         </div>
 
-        <div>
-            <label asp-for="Input.RememberMe"></label>
-            <input asp-for="Input.RememberMe"/>
-            Remember Me
+        <div class="login__submit">
+            <button type="submit" class="button">Log in</button>
         </div>
 
-        <div>
-            <button type="submit">Log in</button>
-        </div>
-
-        <div>
-            <p>
-                <a asp-page="./ForgotPassword">Forgot your password?</a>
-            </p>
-
-            @if(Model.NoIdentitiesExist)
-            {
-                <p>
-                    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register a new user</a>
-                </p>
-            }
+        <div class="login__forgotPassword">
+            <a asp-page="./ForgotPassword">Forgot your password?</a>
         </div>
     </form>
 }
